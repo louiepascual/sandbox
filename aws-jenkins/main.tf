@@ -36,6 +36,14 @@ resource "aws_security_group" "jenkins_sg" {
         cidr_blocks  = var.aws_jenkins_allowed_ips
         description  = "Allow default Jenkins port"
     }
+
+    egress {
+        protocol     = -1
+        from_port    = 0
+        to_port      = 0
+        cidr_blocks  = ["0.0.0.0/0"]
+        description  = "Allow all outbound IPv4 traffic"
+    }
 }
 
 resource "aws_key_pair" "jenkins_admin" {
@@ -49,4 +57,9 @@ resource "aws_instance" "jenkins_vm" {
     key_name                     = aws_key_pair.jenkins_admin.key_name
     associate_public_ip_address  = true
     security_groups              = [aws_security_group.jenkins_sg.name]
+    user_data                    = file("init.sh")
+}
+
+output "jenkins_url" {
+    value = aws_instance.jenkins_vm.public_dns
 }
