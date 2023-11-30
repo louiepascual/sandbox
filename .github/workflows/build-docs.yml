@@ -28,6 +28,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      # List files (debug)
+      - name: List files
+        run: ls
       # Run build
       - name: Run mkdocs build
         run: build
