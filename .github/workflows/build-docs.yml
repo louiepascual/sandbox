@@ -28,12 +28,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # change directory
+      # Build docs
       - name: change directory
-        run: cd mkdocs
-      # list directory
-      - name: list directory
-        run: ls
-      # Run build
-      - name: Run mkdocs build
+        working-directory: ./mkdocs
         run: mkdocs build
+  
