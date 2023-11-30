@@ -31,6 +31,9 @@ jobs:
       # change directory
       - name: change directory
         run: cd mkdocs
+      # list directory
+      - name: list directory
+        run: ls
       # Run build
       - name: Run mkdocs build
         run: mkdocs build
