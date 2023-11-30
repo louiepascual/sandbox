@@ -28,9 +28,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # List files (debug)
-      - name: List files
-        run: ls
+      # change directory
+      - name: change directory
+        run: cd aws-tf
       # Run build
       - name: Run mkdocs build
-        run: build
+        run: mkdocs build
